@@ -1,0 +1,2 @@
+# gsc
+Github Stats Collector
