@@ -20,7 +20,7 @@ jobs:
         uses: thatisuday/go-build-action@v1
         with:
           platforms: "linux/amd64, darwin/amd64, windows/amd64"
-          package: "gsc"
+          package: ""
           name: "gsc"
           compress: "true"
           dest: "dist"
