@@ -1,0 +1,115 @@
+{
+  "sha": "97774ee13cf9289918555a46948532f8ae313c9d",
+  "node_id": "MDY6Q29tbWl0NDM3MjMxNjE6OTc3NzRlZTEzY2Y5Mjg5OTE4NTU1YTQ2OTQ4NTMyZjhhZTMxM2M5ZA==",
+  "commit": {
+    "author": {
+      "name": "Martin Hickey",
+      "email": "martin.hickey@ie.ibm.com",
+      "date": "2020-06-30T06:59:38Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2020-06-30T06:59:38Z"
+    },
+    "message": "Merge pull request #8368 from Hellcatlk/go-lint\n\nFix some go-lint warnings",
+    "tree": {
+      "sha": "eb6ca3cd4446fc54d9aa84eff066d90797b9ab5d",
+      "url": "https://api.github.com/repos/helm/helm/git/trees/eb6ca3cd4446fc54d9aa84eff066d90797b9ab5d"
+    },
+    "url": "https://api.github.com/repos/helm/helm/git/commits/97774ee13cf9289918555a46948532f8ae313c9d",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJe+uLaCRBK7hj4Ov3rIwAAdHIIACmlCZXgpNGa7wpOHFrmPmyH\nIvv6tEn4r45zapJhqzLUT92JWAcYVf1b6GZlyNlGF4nEVs9vXi3yt2rLUqAvObnM\nCY+bhTYy2o323L9zvzocCQ4jACauGB7MoTjGu47t3Gwh8P7I73yAt7pDp+J8VQ1a\nV/ButT4sEFGAKFqYW8EGWiaXgw5WfAvYQD+yGnPDDRpXFoV7GVr9Eub3tmr7CDkx\npXgaSJeWpe9uXmizV+6ztFk6o6vnUYgLpX4+Ln4Wz4yEWRgY5oIOKijjayCE0IHC\nx7gF0KTYqtJKRBp/CX3qYp4M58ZbJBM+lC/rsHOQe805jMqqC/odiOvN69Vj2jw=\n=BuEc\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree eb6ca3cd4446fc54d9aa84eff066d90797b9ab5d\nparent 9b90e848ca659e147cae66dde9c16dcda578f113\nparent c6a00e63ef638c14be5560534c339484e35eb7ba\nauthor Martin Hickey <martin.hickey@ie.ibm.com> 1593500378 +0100\ncommitter GitHub <noreply@github.com> 1593500378 +0100\n\nMerge pull request #8368 from Hellcatlk/go-lint\n\nFix some go-lint warnings"
+    }
+  },
+  "url": "https://api.github.com/repos/helm/helm/commits/97774ee13cf9289918555a46948532f8ae313c9d",
+  "html_url": "https://github.com/helm/helm/commit/97774ee13cf9289918555a46948532f8ae313c9d",
+  "comments_url": "https://api.github.com/repos/helm/helm/commits/97774ee13cf9289918555a46948532f8ae313c9d/comments",
+  "author": {
+    "login": "hickeyma",
+    "id": 14892004,
+    "node_id": "MDQ6VXNlcjE0ODkyMDA0",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/14892004?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/hickeyma",
+    "html_url": "https://github.com/hickeyma",
+    "followers_url": "https://api.github.com/users/hickeyma/followers",
+    "following_url": "https://api.github.com/users/hickeyma/following{/other_user}",
+    "gists_url": "https://api.github.com/users/hickeyma/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/hickeyma/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/hickeyma/subscriptions",
+    "organizations_url": "https://api.github.com/users/hickeyma/orgs",
+    "repos_url": "https://api.github.com/users/hickeyma/repos",
+    "events_url": "https://api.github.com/users/hickeyma/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/hickeyma/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "9b90e848ca659e147cae66dde9c16dcda578f113",
+      "url": "https://api.github.com/repos/helm/helm/commits/9b90e848ca659e147cae66dde9c16dcda578f113",
+      "html_url": "https://github.com/helm/helm/commit/9b90e848ca659e147cae66dde9c16dcda578f113"
+    },
+    {
+      "sha": "c6a00e63ef638c14be5560534c339484e35eb7ba",
+      "url": "https://api.github.com/repos/helm/helm/commits/c6a00e63ef638c14be5560534c339484e35eb7ba",
+      "html_url": "https://github.com/helm/helm/commit/c6a00e63ef638c14be5560534c339484e35eb7ba"
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "additions": 2,
+    "deletions": 2
+  },
+  "files": [
+    {
+      "sha": "3af38429077144d6203e5658963608bb25aa1ec3",
+      "filename": "pkg/postrender/postrender.go",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/helm/helm/blob/97774ee13cf9289918555a46948532f8ae313c9d/pkg/postrender/postrender.go",
+      "raw_url": "https://github.com/helm/helm/raw/97774ee13cf9289918555a46948532f8ae313c9d/pkg/postrender/postrender.go",
+      "contents_url": "https://api.github.com/repos/helm/helm/contents/pkg/postrender/postrender.go?ref=97774ee13cf9289918555a46948532f8ae313c9d",
+      "patch": "@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and\n limitations under the License.\n */\n \n-// package postrender contains an interface that can be implemented for custom\n+// Package postrender contains an interface that can be implemented for custom\n // post-renderers and an exec implementation that can be used for arbitrary\n // binaries and scripts\n package postrender"
+    },
+    {
+      "sha": "2dfa3f615258525671fb48f8d33b79659f05e0a1",
+      "filename": "pkg/storage/storage.go",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/helm/helm/blob/97774ee13cf9289918555a46948532f8ae313c9d/pkg/storage/storage.go",
+      "raw_url": "https://github.com/helm/helm/raw/97774ee13cf9289918555a46948532f8ae313c9d/pkg/storage/storage.go",
+      "contents_url": "https://api.github.com/repos/helm/helm/contents/pkg/storage/storage.go?ref=97774ee13cf9289918555a46948532f8ae313c9d",
+      "patch": "@@ -27,7 +27,7 @@ import (\n \t\"helm.sh/helm/v3/pkg/storage/driver\"\n )\n \n-// The type field of the Kubernetes storage object which stores the Helm release\n+// HelmStorageType is the type field of the Kubernetes storage object which stores the Helm release\n // version. It is modified slightly replacing the '/': sh.helm/release.v1\n // Note: The version 'v1' is incremented if the release object metadata is\n // modified between major releases."
+    }
+  ]
+}
