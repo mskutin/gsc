@@ -1,7 +1,7 @@
-# workflow name
+---
+
 name: CI
 
-# on events
 on:
   push:
     branches:
@@ -10,9 +10,7 @@ on:
     branches:
       - master
 
-# jobs to run
 jobs:
-
   build:
     name: build
     runs-on: ubuntu-latest
