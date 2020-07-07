@@ -26,11 +26,16 @@ var collectCmd = &cobra.Command{
 	Use:   "collect",
 	Short: "Collect statistics for one or more repositories",
 	Long: `
-Collect statistics for a given repository:
-	gsc -r mskutin/gsc
+Collect statistics for one repository:
+	gsc collect -r mskutin/gsc
 
-Collect statistics for a set of repositories:
-	gsc --repos mskutin/gsc,helm/charts
+Collect statistics for multiple repositories:
+	1) gsc collect --repos mskutin/gsc,helm/charts
+	2) gsc collect \
+		-r mskutin/gsc \
+		-r helm/charts \
+		-r github/hubot
+	3) echo "helm/charts,mskutin/gsc" | xargs gsc collect -r
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		//TODO: Validation
