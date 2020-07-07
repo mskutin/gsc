@@ -3,6 +3,6 @@ WORKDIR /go/src/app
 COPY . .
 RUN cd /go/src/app/ && go build -o gsc
 
-FROM alpine
+FROM alpine:latest
 COPY --from=BUILDER /go/src/app/ /app/
 ENTRYPOINT ["/app/gsc"]
