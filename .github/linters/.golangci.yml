@@ -1,0 +1,28 @@
+---
+# https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - dupl
+        - gosec
+        - goconst
+linters:
+  enable:
+    - golint
+    - gosec
+    - unconvert
+    - gocyclo
+    - goconst
+    - goimports
+    - maligned
+    - gocritic
+linters-settings:
+  errcheck:
+    check-blank: true
+  govet:
+    check-shadowing: true
+  gocyclo:
+    min-complexity: 15
+  maligned:
+    suggest-new: true

@@ -27,10 +27,7 @@ func GetCommits(owner, repoName string) ([]Commit, error) {
 		return nil, errors.Wrap(err, "GitHub request failed")
 	}
 	var commits []Commit
-	for _, v := range *githubResponse {
-		commits = append(commits, v)
-	}
-
+	commits = append(commits, *githubResponse...)
 	return commits, nil
 }
 
