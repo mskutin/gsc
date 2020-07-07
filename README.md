@@ -4,11 +4,16 @@ Github Stats Collector is a tiny cli that helps to collect stats for public repo
 <img width="120" alt="Screenshot 2020-07-07 at 03 41 29" src="https://user-images.githubusercontent.com/11622907/86633978-eb19e880-c003-11ea-8bc8-fa4d6d797abb.png">
 
 ```bash
-Collect statistics for a given repository:
-  gsc -r mskutin/gsc
+Collect statistics for one repository:
+	gsc collect -r mskutin/gsc
 
-Collect statistics for a set of repositories:
-	gsc --repos mskutin/gsc,helm/charts
+Collect statistics for multiple repositories:
+	1) gsc collect --repos mskutin/gsc,helm/charts
+	2) gsc collect \
+		-r mskutin/gsc \
+		-r helm/charts \
+		-r github/hubot
+	3) echo "helm/charts,mskutin/gsc" | xargs gsc collect -r
 
 Usage:
   gsc collect [flags]
@@ -17,6 +22,7 @@ Flags:
   -h, --help            help for collect
   -r, --repos strings   Comma separated list of repositories, e.g. 'helm/charts,mskutin/gsc'
   ```
+
 ```bash
 gsc collect -r mskutin/gsc
 ```
