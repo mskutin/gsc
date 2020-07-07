@@ -6,8 +6,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/pkg/errors"
-
 	gh "github.com/mskutin/gsc/internal/github"
 	"github.com/spf13/cobra"
 )
@@ -46,11 +44,11 @@ Collect statistics for multiple repositories:
 
 			head, err := gh.GetHead(params[0], params[1])
 			if err != nil {
-				errors.Wrap(err, "Unable to retrieve head.")
+				log.Fatalln("Unable to retrieve head.", err)
 			}
 			details, err := gh.GetRepository(params[0], params[1])
 			if err != nil {
-				errors.Wrap(err, "Unable to retrieve repository details.")
+				log.Fatalln("Unable to retrieve repository details.", err)
 			}
 			repositories = append(repositories, Repository{
 				name:             details.FullName,
@@ -71,7 +69,10 @@ func PrintCSV(repos []Repository) {
 		records = append(records, row)
 	}
 	w := csv.NewWriter(os.Stdout)
-	w.WriteAll(records)
+	err := w.WriteAll(records)
+	if err != nil {
+		log.Fatalln("error writing csv", err)
+	}
 
 	if err := w.Error(); err != nil {
 		log.Fatalln("error writing csv:", err)
@@ -86,5 +87,9 @@ func init() {
 			"r",
 			[]string{},
 			"Comma separated list of repositories, e.g. 'helm/charts,mskutin/gsc'")
-	collectCmd.MarkFlagRequired("repos")
+	err := collectCmd.MarkFlagRequired("repos")
+	if err != nil {
+		log.Fatalln("MarkFlagRequired is not set", err)
+
+	}
 }
