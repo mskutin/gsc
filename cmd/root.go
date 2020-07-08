@@ -9,7 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gsc",
-	Short: "gsc is a tiny cli that helps to collect stats for public repositories",
+	Short: "gsc is a tiny cli that helps to get stats for public repositories",
 }
 
 func Execute() {

@@ -6,33 +6,33 @@ Github Stats Collector is a tiny cli that helps to collect stats for public repo
 ## Usage
 
 ```shell script
-gsc collect [flags]
+gsc get [flags]
 
 Flags:
   -f, --format string   --format tsv (default "csv")
-  -h, --help            help for collect
+  -h, --help            help for get
   -r, --repos strings   Comma separated list of repositories, e.g. 'helm/charts,mskutin/gsc'
 ```
 ### Stats
 
-#### Collect statistics for one repository:
+#### get statistics for one repository:
 
-`gsc collect -r mskutin/gsc`
+`gsc get -r mskutin/gsc`
 
 ```csv
 name,clone_url,last_commit_author,last_commit_date
 mskutin/gsc,https://github.com/mskutin/gsc.git,Maksim Skutin,2020-07-07 05:43:31 +0000 UTC
 ```
 
-#### Collect statistics for multiple repositories:
+#### get statistics for multiple repositories:
 
 ```shell script
-1) gsc collect --repos mskutin/gsc,helm/charts
-2) gsc collect \
+1) gsc get --repos mskutin/gsc,helm/charts
+2) gsc get \
     -r mskutin/gsc \
     -r helm/charts \
     -r github/hubot
-3) echo "helm/charts,mskutin/gsc" | xargs gsc collect -r
+3) echo "helm/charts,mskutin/gsc" | xargs gsc get -r
 ```
 
 ```csv
@@ -44,7 +44,7 @@ helm/charts,https://github.com/helm/charts.git,Maxime Brunet,2020-07-07 11:51:58
 ### Formatters
 
 ```shell script
-gsc collect [flags]
+gsc get [flags]
 
 Flags:
   -f, --format string   --format tsv (default "csv")

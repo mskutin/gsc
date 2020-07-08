@@ -21,20 +21,20 @@ type Repository struct {
 	defaultBranch    string
 }
 
-var collectCmd = &cobra.Command{
-	Use:   "collect",
-	Short: "Collect statistics for one or more repositories",
+var getCmd = &cobra.Command{
+	Use:   "get",
+	Short: "get statistics for one or more repositories",
 	Long: `
-Collect statistics for one repository:
-	gsc collect -r mskutin/gsc
+get statistics for one repository:
+	gsc get -r mskutin/gsc
 
-Collect statistics for multiple repositories:
-	1) gsc collect --repos mskutin/gsc,helm/charts
-	2) gsc collect \
+get statistics for multiple repositories:
+	1) gsc get --repos mskutin/gsc,helm/charts
+	2) gsc get \
 		-r mskutin/gsc \
 		-r helm/charts \
 		-r github/hubot
-	3) echo "helm/charts,mskutin/gsc" | xargs gsc collect -r
+	3) echo "helm/charts,mskutin/gsc" | xargs gsc get -r
 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -90,21 +90,21 @@ func PrintCSV(repos []Repository, comma rune) {
 	}
 }
 func init() {
-	rootCmd.AddCommand(collectCmd)
-	collectCmd.Flags().StringVarP(
+	rootCmd.AddCommand(getCmd)
+	getCmd.Flags().StringVarP(
 		&format,
 		"format",
 		"f",
 		"csv",
 		"--format tsv")
-	collectCmd.Flags().
+	getCmd.Flags().
 		StringSliceVarP(
 			&repos,
 			"repos",
 			"r",
 			[]string{},
 			"Comma separated list of repositories, e.g. 'helm/charts,mskutin/gsc'")
-	err := collectCmd.MarkFlagRequired("repos")
+	err := getCmd.MarkFlagRequired("repos")
 	if err != nil {
 		log.Fatalln("MarkFlagRequired is not set", err)
 
