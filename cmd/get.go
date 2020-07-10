@@ -6,14 +6,14 @@ import (
 	"os"
 	"strings"
 
-	gh "github.com/mskutin/gsc/internal/github"
+	"github.com/mskutin/gsc/pkg/github"
 	"github.com/spf13/cobra"
 )
 
 var repos []string
 var format string
 
-type Repository struct {
+type Stats struct {
 	name             string
 	cloneURL         string
 	lastCommitDate   string
@@ -39,33 +39,57 @@ get statistics for multiple repositories:
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		//TODO: Validation
-		//TODO: Distinguish CSV & TSV
-		var separator rune
-		stats := getStats()
-		switch format {
-		case "tsv":
-			separator = '\t'
+		var token, tokenIsPresent = os.LookupEnv("GITHUB_TOKEN")
+		var username, usernameIsPresent = os.LookupEnv("GITHUB_USERNAME")
+		log.Println(username, token)
+		switch {
+		case tokenIsPresent && usernameIsPresent:
+			//TODO: Authorization
+			client, err := github.NewWithAuth(username, token)
+			if err != nil {
+				log.Println(err)
+				os.Exit(1)
+			}
+			if !client.IsTokenValid() {
+				log.Println("Username or token is invalid")
+			}
+			log.Println("gsc: Github Authorization is not implemented yet. Unset GITHUB_TOKEN env variable.")
 		default:
-			separator = ','
+			client, err := github.New()
+			if err != nil {
+				log.Println(err)
+				os.Exit(1)
+			}
+			var separator rune
+			stats := getStats(client)
+			switch format {
+			case "tsv":
+				separator = '\t'
+			default:
+				separator = ','
+			}
+			PrintCSV(stats, separator)
 		}
-		PrintCSV(stats, separator)
 	},
 }
 
-func getStats() []Repository {
-	var repositories []Repository
-	for _, repo := range repos {
-		params := strings.Split(repo, "/")
+func getStats(github *github.Client) []Stats {
+	var repositories []Stats
 
-		head, err := gh.GetHead(params[0], params[1])
+	for i := 0; i < len(repos); i++ {
+		repo := repos[i]
+		params := strings.Split(repo, "/")
+		head, err := github.GetHead(params[0], params[1])
 		if err != nil {
-			log.Fatalln("Unable to retrieve head.", err)
+			log.Println(err, repo)
+			continue
 		}
-		details, err := gh.GetRepository(params[0], params[1])
+		details, err := github.GetRepository(params[0], params[1])
 		if err != nil {
-			log.Fatalln("Unable to retrieve repository details.", err)
+			log.Println(err, repo)
+			continue
 		}
-		repositories = append(repositories, Repository{
+		repositories = append(repositories, Stats{
 			name:             details.FullName,
 			cloneURL:         details.CloneURL,
 			lastCommitAuthor: head.Commit.Author.Name,
@@ -76,7 +100,7 @@ func getStats() []Repository {
 	return repositories
 }
 
-func PrintCSV(repos []Repository, comma rune) {
+func PrintCSV(repos []Stats, comma rune) {
 	records := [][]string{{"name", "clone_url", "last_commit_author", "last_commit_date"}}
 	for _, repo := range repos {
 		row := []string{repo.name, repo.cloneURL, repo.lastCommitAuthor, repo.lastCommitDate}
