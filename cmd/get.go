@@ -60,15 +60,8 @@ get statistics for multiple repositories:
 				log.Println(err)
 				os.Exit(1)
 			}
-			var separator rune
 			stats := getStats(client)
-			switch format {
-			case "tsv":
-				separator = '\t'
-			default:
-				separator = ','
-			}
-			PrintCSV(stats, separator)
+			printStats(stats, format)
 		}
 	},
 }
@@ -99,15 +92,21 @@ func getStats(github *github.Client) []Stats {
 	}
 	return repositories
 }
-
-func PrintCSV(repos []Stats, comma rune) {
+func printStats(repos []Stats, format string) {
+	var separator rune
+	switch format {
+	case "tsv":
+		separator = '\t'
+	default:
+		separator = ','
+	}
 	records := [][]string{{"name", "clone_url", "last_commit_author", "last_commit_date"}}
 	for _, repo := range repos {
 		row := []string{repo.name, repo.cloneURL, repo.lastCommitAuthor, repo.lastCommitDate}
 		records = append(records, row)
 	}
 	w := csv.NewWriter(os.Stdout)
-	w.Comma = comma
+	w.Comma = separator
 	err := w.WriteAll(records)
 	if err != nil {
 		log.Fatalln("error writing csv", err)
