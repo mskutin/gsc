@@ -5,19 +5,34 @@ Github Stats Collector is a tiny cli that helps to collect stats for public repo
 
 ## Install
 
-### Use ready binaries
-Download [latest binaries](https://github.com/mskutin/gsc/releases/tag/v0.2-alpha) for your platform.
+The quickest way to start: `docker run mskutin/gsc get --help`
+
+###  Install binary
+
+Platforms supported:
+- [x] [Windows](https://github.com/mskutin/gsc/releases/download/v0.3-alpha/gsc-windows-amd64.tar.gz)
+- [x] [Linux](https://github.com/mskutin/gsc/releases/download/v0.3-alpha/gsc-linux-amd64.tar.gz)
+- [x] [Darwin](https://github.com/mskutin/gsc/releases/download/v0.3-alpha/gsc-darwin-amd64.tar.gz)
 
 ##### Mac OS X
 
-1. `wget -c https://github.com/mskutin/gsc/releases/download/v0.2-alpha/gsc-darwin-amd64.tar.gz -O - | tar -xz`
-2. `mv gsc /usr/local/bin/gsc`
+```bash
+wget -c https://github.com/mskutin/gsc/releases/download/v0.3-alpha/gsc-darwin-amd64.tar.gz -O - | tar -xz && \
+mv gsc /usr/local/bin/gsc
+```
+Installation on other platforms may be different.
 
 ### Build from source
 
-1. `git clone https://github.com/mskutin/gsc`
-2. `go build`
-3. `./gsc help`
+Clone the repository: `git clone https://github.com/mskutin/gsc`
+
+#### Build with go
+- `go build`
+- `./gsc help`
+
+#### Build with docker
+- `docker build -f build/package/cli/Dockerfile . -t gsc`
+- `docker run gsc get --help`
 
 ## Usage
 
@@ -35,7 +50,7 @@ Flags:
 ```
 ### Authorization
 
-By default `gsc` interacts with github api anonymously. 
+By default `gsc` interacts with GitHub API anonymously. 
 Since GitHub's default request rate is only 60 req/h you may run out of this limit shortly.
 You can set `GITHUB_TOKEN` and `GITHUB_USERNAME` environment variables to authorize gsc in GitHub. 
 
