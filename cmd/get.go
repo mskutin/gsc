@@ -26,22 +26,21 @@ var getCmd = &cobra.Command{
 	Short: "get statistics for one or more repositories",
 	Long: `
 get statistics for one repository:
-	gsc get -r mskutin/gsc
+	1) gsc get -r mskutin/gsc
+	2) gsc get --repos=mskutin/gsc
 
 get statistics for multiple repositories:
-	1) gsc get --repos mskutin/gsc,helm/charts
-	2) gsc get \
+	1) gsc get -f tsv \
 		-r mskutin/gsc \
-		-r helm/charts \
-		-r github/hubot
+		-r mskutin/nginx-fluentd \
+		-r helm/charts
+	2) gsc get -r=helm/charts,mskutin/gsc
 	3) echo "helm/charts,mskutin/gsc" | xargs gsc get -r
-
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		//TODO: Validation
 		var token, tokenIsPresent = os.LookupEnv("GITHUB_TOKEN")
 		var username, usernameIsPresent = os.LookupEnv("GITHUB_USERNAME")
-		log.Println(username, token)
 		switch {
 		case tokenIsPresent && usernameIsPresent:
 			//TODO: Authorization
@@ -53,7 +52,7 @@ get statistics for multiple repositories:
 			if !client.IsTokenValid() {
 				log.Println("Username or token is invalid")
 			}
-			log.Println("gsc: Github Authorization is not implemented yet. Unset GITHUB_TOKEN env variable.")
+			log.Println("gsc: Github Authorization is not implemented yet. Unset GITHUB_TOKEN and GITHUB_USERNAME env variables.")
 		default:
 			client, err := github.New()
 			if err != nil {
@@ -126,10 +125,10 @@ func init() {
 			"repos",
 			"r",
 			[]string{},
-			"Comma separated list of repositories, e.g. 'helm/charts,mskutin/gsc'")
+			`One or more repositories: 'gsc get -r mskutin/gsc'
+See help for more examples.`)
 	err := getCmd.MarkFlagRequired("repos")
 	if err != nil {
 		log.Fatalln("MarkFlagRequired is not set", err)
-
 	}
 }
