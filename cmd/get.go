@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"encoding/csv"
+	"strconv"
 	"log"
 	"os"
 	"strings"
@@ -13,6 +14,10 @@ import (
 
 var repos []string
 var format string
+
+type License struct {
+	SPDXID string
+}
 
 type Stats struct {
 	name             string
@@ -70,9 +75,7 @@ get statistics for multiple repositories:
 			minForks, _ := cmd.Flags().GetInt("min-forks")
 			minOpenIssues, _ := cmd.Flags().GetInt("min-open-issues")
 
-			filteredStats := filterStats(getStats(client), minStars, minForks, minOpenIssues)
-
-			stats := getStats(client)
+			stats := filterStats(getStats(client), minStars, minForks, minOpenIssues)
 			printStats(stats, format)
 		}
 	},
@@ -104,10 +107,14 @@ func getStats(github *github.Client) []Stats {
 			forks:            details.ForksCount,
 			openIssues:       details.OpenIssuesCount,
 			description:      details.Description,
-			language:         details.Language,
+			language:         details.Language.(string),
 		}
 		if details.License != nil {
-			stats.license = details.License.SPDXID
+			if license, ok := details.License.(map[string]interface{}); ok {
+				if spdxid, ok := license["spdx_id"].(string); ok {
+					stats.license = spdxid
+				}
+			}
 		}
 		repositories = append(repositories, stats)
 	}
@@ -167,7 +174,8 @@ func printJSON(repos []Stats) {
 func convertIntToString(row []string, indices []int) []string {
 	for _, i := range indices {
 		if i >= 0 && i < len(row) {
-			row[i] = convertString(row[i])
+			num, _ := strconv.Atoi(row[i])
+			row[i] = strconv.Itoa(num)
 		}
 	}
 	return row
